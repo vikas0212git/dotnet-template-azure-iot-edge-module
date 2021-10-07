@@ -1,14 +1,14 @@
 name: CI
 
-on: 
-  push:
-    branches:
-      - master
-    tags:
-      - v*.*.*
-  pull_request:
-    branches:
-      - master
+on: [push]
+ # push:
+  #  branches:
+   #   - master
+   # tags:
+    #  - v*.*.*
+ # pull_request:
+  #  branches:
+   #   - master
 
 jobs:
    dotnet-template-azure-iot-edge-module:
