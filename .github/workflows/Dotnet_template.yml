@@ -1,14 +1,6 @@
 name: CI
 
-on: 
-  push:
-    branches:
-      - master
-    tags:
-      - v*.*.*
-  pull_request:
-    branches:
-      - master
+on: [push] 
 
 jobs:
    dotnet-template-azure-iot-edge-module:
@@ -16,10 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-     # - name: Install NodeJs
-     #   uses: actions/setup-node@v1
-     #   with:
-     #    node-version: 16.x
       - run: mkdir -p .nuget
       - name: Download nuget
         run:  
