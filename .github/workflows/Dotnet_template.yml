@@ -22,7 +22,7 @@ jobs:
      #    node-version: 16.x
       - run: mkdir -p .nuget
       - name: Download nuget
-        run: >- 
+        run:  
           wget -O .nuget/nuget.exe
           https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
       - name: Install Nugget
