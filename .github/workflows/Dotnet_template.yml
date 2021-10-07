@@ -20,9 +20,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
          node-version: 16.x
-      - name: Download nugget
       - run: mkdir -p .nuget
-      - run: >- 
+      - name: Download nuget
+        run: >- 
           wget -O .nuget/nuget.exe
           https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
       - name: Install Nugget
@@ -30,7 +30,7 @@ jobs:
       - name: dotnet test
         run: dotnet test Test/Test.csproj
       - name: nuget packag  
-      - run: mono .nuget/nuget.exe pack -NoDefaultExcludes
+        run: mono .nuget/nuget.exe pack -NoDefaultExcludes
       - name: GitHub Release
         if: |
            success() &&
