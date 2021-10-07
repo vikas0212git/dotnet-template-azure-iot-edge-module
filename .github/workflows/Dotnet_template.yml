@@ -1,28 +1,32 @@
 name: CI
-on: [push]
-  #push:
-    #branches:
-     # - master
-    #tags:
-     # - v*.*.*
-  #pull_request:
-   # branches:
-    #  - master
+
+on: 
+  push:
+    branches:
+      - master
+    tags:
+      - v*.*.*
+  pull_request:
+    branches:
+      - master
 
 jobs:
-  Build:
-    runs-on: '${{ matrix.os }}'
-    strategy:
-      matrix:
-        os:
-          - ubuntu-latest
+   dotnet-template-azure-iot-edge-module:
+    name: dotnet-template-azure-iot-edge-module
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: mkdir -p .nuget
-      - run: >-
+      - name: Install NodeJs
+        uses: actions/setup-node@v1
+        with:
+         node-version: 16.x
+         run: mkdir -p .nuget
+      - name: Download nugget
+      - run: >- 
           wget -O .nuget/nuget.exe
           https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
       - run: mono .nuget/nuget.exe
+      - name: dotnet test
       - run: dotnet test Test/Test.csproj
       - run: mono .nuget/nuget.exe pack -NoDefaultExcludes
       - name: GitHub Release
