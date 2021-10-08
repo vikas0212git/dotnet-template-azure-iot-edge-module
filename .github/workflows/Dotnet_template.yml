@@ -38,4 +38,4 @@ jobs:
             files: ./**/*.nupkg   
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          tags: true  
+          
