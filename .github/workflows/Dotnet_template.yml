@@ -1,6 +1,13 @@
 name: CI
-
-on: [push] 
+on: 
+  push:
+    branches:
+      - master
+    tags:
+      - v*.*.*
+  pull_request:
+    branches:
+      - master
 
 jobs:
    dotnet-template-azure-iot-edge-module:
@@ -8,6 +15,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '3.1'
       - run: mkdir -p .nuget
       - name: Download nuget
         run:  
